@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <title>Frontend Mentor | Social links profile</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --green: hsl(75, 94%, 57%);
+      --white: hsl(0, 0%, 100%);
+      --gray-700: hsl(0, 0%, 20%);
+      --gray-800: hsl(0, 0%, 12%);
+      --gray-900: hsl(0, 0%, 8%);
+    }
+
+    html, body{
+      height: 100%;
+    }
+    
+    body {
+      background-color: var(--gray-900);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--white);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+    }
+
+    .profile-card {
+      background-color: var(--gray-800);
+      border-radius: 12px;
+      padding: 2rem;
+      max-width: 350px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .profile-card img{
+      width: 90px;
+      height: 90px;
+      border-radius: 45px;
+      object-fit: cover;
+      margin-bottom: 1.5rem;
+    }
+
+    .profile-card h1{
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .profile-card p.location{
+      color: var(--green);
+      font-weight: 600;
+      margin-top: 0.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .profile-card p.bio{
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .profile-card a{
+      display: block;
+      background-color: var(--gray-700);
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.75rem;
+      margin: 0.5rem 0;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }    
+
+    .profile-card a:first-child:hover {
+      opacity: 0.1;
+    }
+
+    .attribution{
+      position: absolute;
+      bottom: 10px;
+      font-size: 11px;
+      text-align: center;
+      color: var(--white);
+      width: 100%;
+    }
+
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+</head>
+<body>
+  <main class="profile-card">
+    <img src="assets/images/avatar-jessica.jpeg" alt="Profile picture of Jessica Randall" />
+      <h1>Jessica Randall</h1>
+      <p class="location">London, United Kingdom</p>
+      <p class="bio">"Front-end developer and avid reader."</p>
+      <a href = "#">GitHub</a>
+      <a href = "#">Frontend Mentor</a>
+      <a href = "#">LinkedIn</a>
+      <a href = "#">Twitter</a>
+      <a href = "#">Instagram</a>
+  </main>
+  <footer class = "attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+  </footer>
+</body>
+</html>
