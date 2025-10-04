@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+     <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Customer Reviews</title>
+
+    <style>
+      body {
+        font-family: 'League Spartan', sans-serif;
+        background-color: hsl(0, 0%, 100%);
+        background-image: url('images/bg-pattern-top-desktop.svg'), url('images/bg-pattern-bottom-desktop.svg');
+        background-repeat: no-repeat, no-repeat;
+        background-position: top left, bottom right;
+        background-size: contain, contain;
+        color: hsl(300, 43%, 22%);
+        font-size: 15px;
+        margin: 0;
+      }
+
+      .container {
+        display: flex;
+        justify-content: space-between;
+        padding: 2rem;
+        max-width: 1440px;
+        margin: 0 auto;
+        align-items: flex-start;
+        flex-wrap: wrap;
+      }
+
+      /* Left section for heading and subheading */
+      .left-section {
+        flex: 1;
+        min-width: 300px;
+        max-width: 500px;
+        padding: 120px 2rem 2rem 2rem;
+      }
+
+      .left-section h1{
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      .left-section p{
+        font-weight: 500;
+        color: hsl(303, 10%, 53%);
+        line-height: 1.6;
+      }
+     
+      /* Right section for ratings boxes (with staggered falling effect) */
+      .ratings {
+        display: flex;
+        flex-direction: column;
+        padding: 100px 2rem 2rem 2rem;
+        gap: 30px;
+        margin-top: 40px;
+        margin-right: 20%;
+        position: relative;
+      }
+
+      .rating-box {
+        background-color: hsl(300, 24%, 96%);
+        padding: 20px;
+        border-radius: 10px;
+        width: 350px;
+        color: hsl(300, 43%, 22%);
+        font-weight: bold;
+        transition: transform 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .stars {
+        display: flex;
+        gap: 5px;
+      }
+
+      .stars img {
+        width: 20px;
+        height: 20px;
+      }
+
+      
+      /* Staggered "falling" effect for the rating boxes */
+      .ratings .rating-box:nth-child(1) {
+        transform: translateY(0) translateX(0);
+      }
+
+      .ratings .rating-box:nth-child(2) {
+        transform: translateY(10px) translateX(60px);
+      }
+
+      .ratings .rating-box:nth-child(3) {
+        transform: translateY(20px) translateX(120px);
+      }
+
+      /* Reviews section (adjusted to appear in a row with falling effect) */
+      .reviews {
+        display: flex;
+        gap: 30px;
+        justify-content: center;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        flex-wrap: wrap;
+      }
+
+      .review {
+        background-color: hsl(300, 43%, 22%);
+        border-radius: 8px;
+        padding: 20px;
+        color: white;
+        width: 300px; 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: left;
+        position: relative;
+        transition: transform 0.3s ease;
+      }
+
+      .review-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .review img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .review .name{
+        font-weight: bold;
+        font-size: 1.2rem;
+        color: white;
+        margin: 0;
+      }
+
+      .review .verified{
+        font-size: 0.9rem;
+        color: hsl(333, 80%, 67%);
+        margin:0;
+      }
+
+      .review p {
+        font-size: 1em;
+        line-height: 1.6;
+      }
+
+      /* Add a "falling" effect to each review */
+      .reviews .review:nth-child(1) {
+        transform: translateY(0);
+      }
+
+      .reviews .review:nth-child(2) {
+        transform: translateY(10px);
+      }
+
+      .reviews .review:nth-child(3) {
+        transform: translateY(20px);
+      }
+
+      /* Responsive styles for mobile */
+      @media (max-width: 768px) {
+        body {
+          background-image: url('images/bg-pattern-top-mobile.svg'), url('images/bg-pattern-bottom-mobile.svg');
+          background-position: top left, bottom right;
+          background-size: contain, contain;
+        }
+        .container {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .ratings {
+          align-items: center;
+        }
+
+        .rating-box {
+          width: 100%;
+          max-width: 300px;
+        }
+
+        .reviews {
+          flex-direction: column;
+          gap: 20px;
+          align-items: center;
+        }
+      }
+
+      /* Responsive styles for desktop */
+      @media (min-width: 1440px) {
+        .left-section h1 {
+          font-size: 3rem;
+        }
+
+        .left-section p {
+          font-size: 1.2rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="left-section">
+        <h1>10,000+ of our users love our products.</h1>
+        <p>
+          We only provide great products combined with excellent customer service. See what our satisfied customers are saying about our services.
+        </p>
+      </div>
+
+      <div class="ratings">
+        <div class="rating-box"><div class="stars"><img src="images/icon-star.svg"><img src="images/icon-star.svg"><img src="images/icon-star.svg"><img src="images/icon-star.svg"><img src="images/icon-star.svg"></div>Rated 5 Stars in Reviews</div>
+        <div class="rating-box"><div class="stars"><img src="images/icon-star.svg"><img src="images/icon-star.svg"><img src="images/icon-star.svg"><img src="images/icon-star.svg"><img src="images/icon-star.svg"></div>Rated 5 Stars in Report Guru</div>
+        <div class="rating-box"><div class="stars"><img src="images/icon-star.svg"><img src="images/icon-star.svg"><img src="images/icon-star.svg"><img src="images/icon-star.svg"><img src="images/icon-star.svg"></div>Rated 5 Stars in BestTech</div>
+      </div>
+    </div>
+
+    <!-- Customer Reviews Section -->
+    <div class="reviews">
+      <div class="review">
+      <div class="review-header">
+        <img src="images/image-colton.jpg" alt="">
+        <div>
+        <p class = "name">Colton Smith</p>
+        <p class="verified">Verified Buyer</p>
+        </div>
+      </div>
+        <p>  
+          "We needed the same printed design as the one we had ordered a week prior. Not only did they find the original order, but we also received it in time. Excellent!"
+        </p>
+      </div>
+      <div class="review">
+      <div class="review-header">
+        <img src="images/image-irene.jpg" alt="">
+        <div>
+        <p class="name">Irene Roberts</p>
+        <p class="verified">Verified Buyer</p>
+        </div>
+      </div>
+        <p>
+          "Customer service is always excellent and very quick turn around. Completely delighted with the simplicity of the purchase and the speed of delivery."
+        </p>
+      </div>
+      <div class="review">
+      <div class="review-header">
+        <img src="images/image-anne.jpg" alt="">
+        <div>
+        <p class="name">Anne Wallace</p>
+        <p class="verified">Verified Buyer</p>
+        </div>
+      </div>
+        <p>
+          "Put an order with this company and can only praise them for the very high standard. Will definitely use them again and recommend them to everyone!"
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

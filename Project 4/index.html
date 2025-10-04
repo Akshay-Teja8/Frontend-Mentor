@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Browser Extensions Manager UI</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(180deg, #040918 0%, #091540 100%);
+      --card-bg: hsl(226, 25%, 17%);
+      --text-color: #fff;
+      --toggle-bg: hsl(225, 23%, 24%);
+      --remove-btn: hsl(3, 77%, 44%);
+    }
+
+    body.light {
+      --bg-gradient: linear-gradient(180deg, #EBF2FC 0%, #EEF8F9 100%);
+      --card-bg: hsl(0, 0%, 100%);
+      --text-color: hsl(226, 11%, 15%);
+      --toggle-bg: hsl(0, 0%, 85%);
+      --remove-btn: hsl(3, 86%, 64%);
+    }
+
+    body {
+      font-family: 'Noto Sans', sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+      transition: all 0.3s ease;
+    }
+
+    .header-container {
+      background: hsl(227, 75%, 14%);
+      padding: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-title {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-title img {
+      height: 40px;
+    }
+
+    .logo-title h1 {
+      font-size: 1.8rem;
+      margin: 0;
+    }
+
+    .theme-toggle img {
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      transition: filter 0.3s ease;
+      background-color: hsl(225, 23%, 24%);
+      padding: 10px 10px 10px 10px;
+      border-radius: 10px;
+    }
+
+    .theme-toggle img:hover {
+      filter: brightness(1.2);
+    }
+
+    .filter-buttons-wrapper {
+      display: flex;
+      justify-content: flex-end;
+      padding: 1rem 2rem 0 2rem;
+    }
+
+    .filter-buttons {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .filter-buttons button {
+      padding: 0.4rem 1rem;
+      border: none;
+      border-radius: 20px;
+      background: var(--toggle-bg);
+      color: var(--text-color);
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .filter-buttons button.active {
+      background: hsl(200, 60%, 99%);
+      color: white;
+    }
+
+    .extensions-list {
+      display: grid;
+      gap: 1.5rem;
+      padding: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .card-header img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    button.remove-btn {
+      background: var(--remove-btn);
+      border: none;
+      color: white;
+      padding: 0.4rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .toggle {
+      width: 40px;
+      height: 20px;
+      background: var(--toggle-bg);
+      border-radius: 20px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .toggle::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      background: white;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    .toggle.active {
+      background: hsl(3, 86%, 64%);
+    }
+
+    .toggle.active::after {
+      left: 22px;
+    }
+
+    footer.attribution {
+      text-align: center;
+      padding: 1rem;
+      font-size: 12px;
+      color: hsl(0, 0%, 78%);
+    }
+
+    @media (max-width: 600px) {
+      .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      .filter-buttons-wrapper {
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🔲 Header -->
+  <div class="header-container">
+    <div class="logo-title">
+      <img id="theme-logo" src="./assets/images/logo.svg" alt="Extensions Logo" />
+      <h1>Extensions</h1>
+    </div>
+    <div class="theme-toggle">
+      <img id="themeToggle" src="./assets/images/icon-sun.svg" alt="Toggle Theme" title="Toggle Theme" />
+    </div>
+  </div>
+
+  <!-- 🔘 Filter Buttons -->
+  <div class="filter-buttons-wrapper">
+    <div class="filter-buttons">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="active">Active</button>
+      <button class="filter-btn" data-filter="inactive">Inactive</button>
+    </div>
+  </div>
+
+  <!-- 📦 Extension Cards -->
+  <main>
+    <div id="extensions-list" class="extensions-list"></div>
+  </main>
+
+  <footer class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+    Coded by <a href="#">Your Name</a>.
+  </footer>
+
+  <script>
+    let extensionsData = [];
+
+    const listContainer = document.getElementById('extensions-list');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const themeToggleIcon = document.getElementById('themeToggle');
+    const themeLogo = document.getElementById('theme-logo');
+
+    // Load Extensions
+    fetch('extensions.json')
+      .then(res => res.json())
+      .then(data => {
+        extensionsData = data;
+        renderExtensions();
+      })
+      .catch(err => {
+        listContainer.innerHTML = `<p style="color:red;">Failed to load extensions data.</p>`;
+        console.error("Error loading JSON:", err);
+      });
+
+    function renderExtensions(filter = 'all') {
+      listContainer.innerHTML = '';
+      const filtered = extensionsData.filter(ext => {
+        if (filter === 'all') return true;
+        if (filter === 'active') return ext.isActive;
+        if (filter === 'inactive') return !ext.isActive;
+      });
+
+      filtered.forEach(ext => {
+        const card = document.createElement('div');
+        card.className = `card ${ext.isActive ? '' : 'inactive'}`;
+
+        card.innerHTML = `
+          <div class="card-header">
+            <img src="${ext.logo}" alt="${ext.name} logo" />
+            <h3>${ext.name}</h3>
+          </div>
+          <p class="description">${ext.description}</p>
+          <div class="actions">
+            <button class="remove-btn">Remove</button>
+            <div class="toggle ${ext.isActive ? 'active' : ''}" data-name="${ext.name}"></div>
+          </div>
+        `;
+        listContainer.appendChild(card);
+      });
+
+      addToggleEvents();
+    }
+
+    function addToggleEvents() {
+      document.querySelectorAll('.toggle').forEach(toggle => {
+        toggle.addEventListener('click', () => {
+          const name = toggle.dataset.name;
+          const ext = extensionsData.find(e => e.name === name);
+          ext.isActive = !ext.isActive;
+          renderExtensions(document.querySelector('.filter-btn.active').dataset.filter);
+        });
+      });
+    }
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderExtensions(btn.dataset.filter);
+      });
+    });
+
+    // Theme Toggle
+    themeToggleIcon.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      const isLight = document.body.classList.contains('light');
+
+      themeToggleIcon.src = isLight
+        ? './assets/images/icon-moon.svg'
+        : './assets/images/icon-sun.svg';
+
+      themeLogo.src = isLight
+        ? './assets/images/logo.svg'
+        : './assets/images/logo-sun.svg';
+    });
+  </script>
+</body>
+</html>
