@@ -1,0 +1,121 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: 'Montserrat', sans-serif;
+  --font-serif: 'Playfair Display', serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+}
+
+/* Luxury Interior Design Theme - Neutral, Warm, Elegant */
+:root {
+  /* Warm Cream / Off-White Background */
+  --background: 40 20% 97%; 
+  /* Dark Charcoal for Text - softer than pure black */
+  --foreground: 30 5% 15%;
+
+  /* Gold / Bronze Accent */
+  --primary: 35 30% 45%;
+  --primary-foreground: 40 20% 97%;
+
+  /* Soft Beige Secondary */
+  --secondary: 35 15% 90%;
+  --secondary-foreground: 30 5% 15%;
+
+  /* Muted Greys */
+  --muted: 30 10% 94%;
+  --muted-foreground: 30 5% 45%;
+
+  /* Accent for hover states - slightly darker gold */
+  --accent: 35 15% 90%;
+  --accent-foreground: 30 5% 15%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 30 5% 15%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 30 5% 15%;
+
+  --border: 35 10% 85%;
+  --input: 35 10% 85%;
+  --ring: 35 30% 45%;
+
+  --radius: 0.25rem;
+}
+
+.dark {
+  /* Dark mode - Deep Charcoal/Black */
+  --background: 30 5% 10%;
+  --foreground: 40 20% 95%;
+
+  --primary: 35 40% 55%; /* Lighter gold for dark mode */
+  --primary-foreground: 30 5% 10%;
+
+  --secondary: 30 5% 15%;
+  --secondary-foreground: 40 20% 95%;
+
+  --muted: 30 5% 15%;
+  --muted-foreground: 30 5% 60%;
+
+  --accent: 30 5% 15%;
+  --accent-foreground: 40 20% 95%;
+
+  --card: 30 5% 12%;
+  --card-foreground: 40 20% 95%;
+
+  --popover: 30 5% 12%;
+  --popover-foreground: 40 20% 95%;
+
+  --border: 30 5% 20%;
+  --input: 30 5% 20%;
+  --ring: 35 40% 55%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply font-sans antialiased bg-background text-foreground selection:bg-primary/20;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif font-medium tracking-tight;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
